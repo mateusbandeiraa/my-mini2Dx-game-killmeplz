@@ -45,4 +45,10 @@ public class Player {
 		// Use the point's render coordinates to draw the sprite
 		g.drawSprite(sprite, point.getRenderX(), point.getRenderY());
 	}
+
+	public CollisionPoint getPoint() {
+		return point;
+	}
+	
+	
 }
