@@ -1,6 +1,7 @@
 package entity;
 
 import org.mini2Dx.core.engine.geom.CollisionPoint;
+import org.mini2Dx.core.geom.Point;
 import org.mini2Dx.core.graphics.Graphics;
 import org.mini2Dx.core.graphics.Sprite;
 
@@ -9,12 +10,20 @@ import com.badlogic.gdx.graphics.Texture;
 public class AmmoRefueler {
 	private CollisionPoint point;
 	private Sprite sprite;
-	private static final float DIMENSIONS = 32;
+	
+	private static final float DIMENSIONS = 32f;
+	private static final float COLLISION_RADIUS = 24f;
 
 	public AmmoRefueler() {
 		point = new CollisionPoint(512f, 8f);
 		sprite = new Sprite(new Texture("tanks_crateAmmo.png"));
 		sprite.setSize(DIMENSIONS, DIMENSIONS);
+	}
+
+	public boolean checkCollision(Player p) {
+		Point playerCollisionPoint = p.getPoint();
+
+		return this.point.getDistanceTo(playerCollisionPoint) < COLLISION_RADIUS;
 	}
 
 	public void update() {
