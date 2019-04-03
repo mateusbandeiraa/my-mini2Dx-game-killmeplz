@@ -72,7 +72,7 @@ public abstract class GameObject {
 		this.updateCollisionBoxPosition();
 	}
 
-	public float getY(float y) {
+	public float getY() {
 		return sprite.getY();
 	}
 	
