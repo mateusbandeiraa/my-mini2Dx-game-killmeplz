@@ -96,15 +96,15 @@ public abstract class GameObject {
 		collisionBox.set(sprite.getX(), sprite.getY());
 	}
 
-	public final void update() {
+	public final void update(float delta) {
 		collisionBox.preUpdate();
-		this.behave();
+		this.behave(delta);
 	}
 
 	/**
 	 * Análogo ao update(), mas é rodado após o update da collisionBox.
 	 */
-	public abstract void behave();
+	public abstract void behave(float delta);
 
 	public void interpolate(float alpha){
 		collisionBox.interpolate(null, alpha);

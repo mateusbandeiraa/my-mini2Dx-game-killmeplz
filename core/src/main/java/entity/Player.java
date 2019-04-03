@@ -15,7 +15,7 @@ public class Player extends GameObject{
 		super(32f, 8f, DIMENSIONS, DIMENSIONS, new Texture(INITIAL_COLOR.sprite));
 	}
 
-	public void behave() {
+	public void behave(float delta) {
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			if (sprite.isFlipX())
 				sprite.flip(true, false);
