@@ -21,11 +21,10 @@ public abstract class GameObject {
 	}
 
 	public GameObject(float positionX, float positionY, float width, float height, Texture texture) {
-		this();
-		this.setTexture(texture);
+		sprite = new Sprite(texture);
 		sprite.setSize(width, height);
 		sprite.setPosition(positionX, positionY);
-		collisionBox.set(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
+		collisionBox = new CollisionBox(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
 	}
 
 	public Texture getTexture() {
@@ -107,7 +106,9 @@ public abstract class GameObject {
 	 */
 	public abstract void behave();
 
-	public abstract void interpolate(float alpha);
+	public void interpolate(float alpha){
+		collisionBox.interpolate(null, alpha);
+	}
 
 	public abstract void render(Graphics g);
 
