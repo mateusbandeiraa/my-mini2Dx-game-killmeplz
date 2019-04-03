@@ -21,6 +21,7 @@ public class MenuScreen extends BasicGameScreen {
 	private Sprite[] tanks = new Sprite[3];
 	private TankColor[] tankColors = { TankColor.GREEN, TankColor.YELLOW, TankColor.GREY };
 	private int selectedTank = -1;
+	private float tick = 0.125f;
 
 	@Override
 	public void initialise(GameContainer gc) {
@@ -55,21 +56,25 @@ public class MenuScreen extends BasicGameScreen {
 			}
 		}
 
-		if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
-			screenManager.enterGameScreen(1, new FadeOutTransition(), new FadeInTransition());
-		}
+		tick -= delta;
+		if (tick < 0) {
+			if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
+				screenManager.enterGameScreen(1, new FadeOutTransition(), new FadeInTransition());
+			}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
-			selectedTank = (selectedTank - 1 + 3) % 3;
-		} else if (Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
-			selectedTank = (selectedTank + 1) % 3;
-		}
+			if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+				selectedTank = (selectedTank - 1 + 3) % 3;
+				
+			} else if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+				selectedTank = (selectedTank + 1) % 3;
+			}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-			telaIngame.getPlayer().changeColor(tankColors[selectedTank]);
-			screenManager.enterGameScreen(1, new FadeOutTransition(), new FadeInTransition());
+			if (Gdx.input.isKeyPressed(Input.Keys.ENTER)) {
+				telaIngame.getPlayer().changeColor(tankColors[selectedTank]);
+				screenManager.enterGameScreen(1, new FadeOutTransition(), new FadeInTransition());
+			}
+			tick = 0.125f;
 		}
-
 	}
 
 	@Override
@@ -80,7 +85,7 @@ public class MenuScreen extends BasicGameScreen {
 	@Override
 	public void render(GameContainer gc, Graphics g) {
 		g.drawString("Escolha seu tanque.", 32f, 32f);
-		
+
 		for (Sprite s : tanks) {
 			g.drawSprite(s);
 		}
