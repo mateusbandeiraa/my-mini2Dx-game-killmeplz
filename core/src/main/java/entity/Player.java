@@ -12,10 +12,11 @@ public class Player {
 	private CollisionPoint point;
 	private Sprite sprite;
 	private static final float DIMENSIONS = 32;
+	private TankColor color = TankColor.YELLOW;
 
 	public Player() {
 		point = new CollisionPoint(32f, 8f);
-		sprite = new Sprite(new Texture("tanks_tankDesert2.png"));
+		sprite = new Sprite(new Texture(color.sprite));
 		sprite.setSize(DIMENSIONS, DIMENSIONS);
 	}
 
@@ -50,5 +51,13 @@ public class Player {
 		return point;
 	}
 	
+	public void changeColor(TankColor color) {
+		this.color = color;
+		this.sprite.setTexture(new Texture(this.color.sprite));
+	}
+	
+	public TankColor getColor() {
+		return this.color;
+	}
 	
 }

@@ -9,7 +9,7 @@ public class GameLauncher extends ScreenBasedGame {
 	@Override
 	public void initialise() {
 		this.addScreen(new IngameScreen());
-                this.addScreen(new MenuScreen());
+        this.addScreen(new MenuScreen());
 	}
 
 	@Override
