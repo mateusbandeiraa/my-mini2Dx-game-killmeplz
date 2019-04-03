@@ -1,54 +1,34 @@
 package entity;
 
-import org.mini2Dx.core.engine.geom.CollisionPoint;
 import org.mini2Dx.core.graphics.Graphics;
-import org.mini2Dx.core.graphics.Sprite;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 
-public class Player {
-	private CollisionPoint point;
-	private Sprite sprite;
+public class Player extends GameObject{
 	private static final float DIMENSIONS = 32;
-	private TankColor color = TankColor.YELLOW;
+	private static final TankColor INITIAL_COLOR = TankColor.YELLOW;
+	private TankColor color = INITIAL_COLOR;
 
 	public Player() {
-		point = new CollisionPoint(32f, 8f);
-		sprite = new Sprite(new Texture(color.sprite));
-		sprite.setSize(DIMENSIONS, DIMENSIONS);
+		super(32f, 8f, DIMENSIONS, DIMENSIONS, new Texture(INITIAL_COLOR.sprite));
 	}
 
-	public void update() {
-		// preUpdate() must be called before any changes are made to the CollisionPoint
-		point.preUpdate();
-		// Move the point by 4 pixels on the X and Y axis
+	public void behave() {
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			if (sprite.isFlipX())
 				sprite.flip(true, false);
-			point.set(point.getX() + 4f, point.getY());
+			this.setPosition(this.getX() + 4f, this.getY());
 		} else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
 			if (!sprite.isFlipX())
 				sprite.flip(true, false);
-			point.set(point.getX() - 4f, point.getY());
+			this.setPosition(this.getX() - 4f, this.getY());
 		}
 	}
 
-	public void interpolate(float alpha) {
-		// This method uses the lerp (linear interpolate) method from LibGDX
-		// to interpolate between the previous and current positions
-		// and set the render coordinates correctly
-		point.interpolate(null, alpha);
-	}
-
 	public void render(Graphics g) {
-		// Use the point's render coordinates to draw the sprite
-		g.drawSprite(sprite, point.getRenderX(), point.getRenderY());
-	}
-
-	public CollisionPoint getPoint() {
-		return point;
+		g.drawSprite(this.sprite);
 	}
 	
 	public void changeColor(TankColor color) {
