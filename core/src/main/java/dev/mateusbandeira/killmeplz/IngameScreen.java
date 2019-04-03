@@ -61,7 +61,6 @@ public class IngameScreen extends BasicGameScreen {
 
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
 		return IngameScreen.ID;
 	}
 

@@ -39,7 +39,7 @@ public class MenuScreen extends BasicGameScreen {
 
 	@Override
 	public void update(GameContainer gc, ScreenManager<? extends GameScreen> screenManager, float delta) {
-		IngameScreen telaIngame = ((IngameScreen) screenManager.getGameScreen(1));
+		IngameScreen telaIngame = ((IngameScreen) screenManager.getGameScreen(IngameScreen.ID));
 
 		if (selectedTank == -1) {
 			switch (telaIngame.getPlayer().getColor()) {
