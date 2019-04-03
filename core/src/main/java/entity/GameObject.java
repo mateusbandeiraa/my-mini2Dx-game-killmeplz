@@ -16,10 +16,12 @@ public abstract class GameObject {
 	protected Sprite sprite;
 
 	public GameObject() {
-
+		sprite = new Sprite();
+		collisionBox = new CollisionBox();
 	}
 
 	public GameObject(float positionX, float positionY, float width, float height, Texture texture) {
+		this();
 		this.setTexture(texture);
 		sprite.setSize(width, height);
 		sprite.setPosition(positionX, positionY);
