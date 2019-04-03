@@ -30,6 +30,7 @@ public class IngameScreen extends BasicGameScreen {
 
 	@Override
 	public void update(GameContainer gc, ScreenManager<? extends GameScreen> screenManager, float delta) {
+		// Verifica se o jogador pressionou TAB para abrir o menu.
 		if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
 			screenManager.enterGameScreen(2, new FadeOutTransition(), new FadeInTransition());
 		}
@@ -50,11 +51,13 @@ public class IngameScreen extends BasicGameScreen {
 		refueler1.render(g);
 		player.render(g);
 
-		if (refueler1.checkCollision(player))
+		// Verifica se existe colisão entre o jogador e o Refueler.
+		if (refueler1.checkCollision(player)) {
 			g.drawString(MESSAGE, refueler1.getPoint().getX() - 32f, refueler1.getPoint().getY() + 48f);
+		}
 
 	}
-	
+
 	public Player getPlayer() {
 		return this.player;
 	}
