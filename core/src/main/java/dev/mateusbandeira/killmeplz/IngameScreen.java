@@ -24,7 +24,7 @@ public class IngameScreen extends BasicGameScreen {
 	@Override
 	public void initialise(GameContainer gc) {
 		player = new Player();
-		refueler1 = new AmmoRefueler();
+		refueler1 = new AmmoRefueler(512f, 8f);
 
 	}
 
@@ -35,14 +35,14 @@ public class IngameScreen extends BasicGameScreen {
 			screenManager.enterGameScreen(2, new FadeOutTransition(), new FadeInTransition());
 		}
 		player.update(delta);
-		refueler1.update();
+		refueler1.update(delta);
 
 	}
 
 	@Override
 	public void interpolate(GameContainer gc, float alpha) {
 		player.interpolate(gc, alpha);
-		refueler1.interpolate(alpha);
+		refueler1.interpolate(gc, alpha);
 
 	}
 
@@ -53,7 +53,7 @@ public class IngameScreen extends BasicGameScreen {
 
 		// Verifica se existe colisão entre o jogador e o Refueler.
 		if (refueler1.checkCollision(player)) {
-			g.drawString(MESSAGE, refueler1.getPoint().getX() - 32f, refueler1.getPoint().getY() + 48f);
+			g.drawString(MESSAGE, refueler1.getX() - 32f, refueler1.getY() + 48f);
 		}
 
 	}

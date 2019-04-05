@@ -1,47 +1,24 @@
 package dev.mateusbandeira.killmeplz.entity;
 
-import org.mini2Dx.core.engine.geom.CollisionPoint;
-import org.mini2Dx.core.graphics.Graphics;
-import org.mini2Dx.core.graphics.Sprite;
-
 import com.badlogic.gdx.graphics.Texture;
 
-public class AmmoRefueler {
-	private CollisionPoint point;
-	private Sprite sprite;
-	
+public class AmmoRefueler extends GameObject {
+
 	private static final float DIMENSIONS = 32f;
 	private static final float COLLISION_RADIUS = 24f;
+	private static final String TEXTURE_PATH = "tanks_crateAmmo.png";
 
-	public AmmoRefueler() {
-		point = new CollisionPoint(512f, 8f);
-		sprite = new Sprite(new Texture("tanks_crateAmmo.png"));
-		sprite.setSize(DIMENSIONS, DIMENSIONS);
+	public AmmoRefueler(float positionX, float positionY) {
+		super(positionX, positionY, DIMENSIONS, DIMENSIONS, new Texture(TEXTURE_PATH));
 	}
 
 	public boolean checkCollision(Player p) {
-		return this.point.getDistanceTo(p.getX(), p.getY()) < COLLISION_RADIUS;
+		return this.collisionBox.getDistanceTo(p.getX(), p.getY()) < COLLISION_RADIUS;
 	}
 
-	public void update() {
-		// preUpdate() must be called before any changes are made to the CollisionPoint
-		point.preUpdate();
+	@Override
+	public void behave(float delta) {
+		// TODO Auto-generated method stub
 
-	}
-
-	public void interpolate(float alpha) {
-		// This method uses the lerp (linear interpolate) method from LibGDX
-		// to interpolate between the previous and current positions
-		// and set the render coordinates correctly
-		point.interpolate(null, alpha);
-	}
-
-	public void render(Graphics g) {
-		// Use the point's render coordinates to draw the sprite
-		g.drawSprite(sprite, point.getRenderX(), point.getRenderY());
-	}
-
-	public CollisionPoint getPoint() {
-		return point;
 	}
 }
