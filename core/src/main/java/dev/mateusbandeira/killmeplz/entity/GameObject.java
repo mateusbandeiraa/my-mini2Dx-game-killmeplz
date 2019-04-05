@@ -29,6 +29,43 @@ public abstract class GameObject {
 		this.updateSpritePosition();
 	}
 
+	/**
+	 * Atualiza as dimensões do sprite para coincidir com a da collisionBox.
+	 */
+	private void updateSpriteDimensions() {
+		sprite.setSize(collisionBox.getWidth(), collisionBox.getHeight());
+	}
+
+	/**
+	 * Atualiza a posição do sprite para coincidir com a da collisionBox.
+	 */
+	private void updateSpritePosition() {
+		sprite.setPosition(collisionBox.getX(), collisionBox.getY());
+	}
+
+	public final void update(float delta) {
+		collisionBox.preUpdate();
+		this.behave(delta);
+	}
+
+	/**
+	 * Análogo ao update(), mas é rodado após o update da collisionBox.
+	 */
+	public abstract void behave(float delta);
+
+	public void interpolate(GameContainer gc, float alpha) {
+		collisionBox.interpolate(gc, alpha);
+	}
+
+	public void render(Graphics g) {
+		if (sprite.getX() != collisionBox.getRenderX()) {
+			System.out.println("X: " + sprite.getX() + ", renderX: " + collisionBox.getRenderX());
+		}
+		g.drawSprite(sprite, collisionBox.getRenderX(), collisionBox.getRenderY());
+	};
+
+	// GETTERS E SETTERS ABAIXO!
+
 	public Texture getTexture() {
 		return sprite.getTexture();
 	}
@@ -64,6 +101,10 @@ public abstract class GameObject {
 		collisionBox.set(x, y);
 		this.updateSpritePosition();
 	}
+	
+	public float getCenterX() {
+		return collisionBox.getCenterX();
+	}
 
 	public float getX() {
 		return collisionBox.getX();
@@ -74,6 +115,10 @@ public abstract class GameObject {
 		this.updateSpritePosition();
 	}
 
+	public float getCenterY() {
+		return collisionBox.getCenterY();
+	}
+	
 	public float getY() {
 		return collisionBox.getY();
 	}
@@ -82,40 +127,5 @@ public abstract class GameObject {
 		collisionBox.setY(y);
 		this.updateSpritePosition();
 	}
-	
-	/**
-	 * Atualiza as dimensões do sprite para coincidir com a da collisionBox.
-	 */
-	private void updateSpriteDimensions() {
-		sprite.setSize(collisionBox.getWidth(), collisionBox.getHeight());
-	}
-
-	/**
-	 * Atualiza a posição do sprite para coincidir com a da collisionBox.
-	 */
-	private void updateSpritePosition() {
-		sprite.setPosition(collisionBox.getX(), collisionBox.getY());
-	}
-
-	public final void update(float delta) {
-		collisionBox.preUpdate();
-		this.behave(delta);
-	}
-
-	/**
-	 * Análogo ao update(), mas é rodado após o update da collisionBox.
-	 */
-	public abstract void behave(float delta);
-
-	public void interpolate(GameContainer gc, float alpha) {
-		collisionBox.interpolate(gc, alpha);
-	}
-
-	public void render(Graphics g) {
-		if(sprite.getX() != collisionBox.getRenderX()) {
-			System.out.println("X: " + sprite.getX() + ", renderX: " + collisionBox.getRenderX());
-		}
-		g.drawSprite(sprite, collisionBox.getRenderX(), collisionBox.getRenderY());
-	};
 
 }

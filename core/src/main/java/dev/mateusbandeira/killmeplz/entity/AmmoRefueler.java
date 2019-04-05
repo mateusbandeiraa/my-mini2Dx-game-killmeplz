@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class AmmoRefueler extends GameObject {
 
 	private static final float DIMENSIONS = 32f;
-	private static final float COLLISION_RADIUS = 24f;
+	private static final float COLLISION_RADIUS = 4f;
 	private static final String TEXTURE_PATH = "tanks_crateAmmo.png";
 
 	public AmmoRefueler(float positionX, float positionY) {
@@ -13,7 +13,8 @@ public class AmmoRefueler extends GameObject {
 	}
 
 	public boolean checkCollision(Player p) {
-		return this.collisionBox.getDistanceTo(p.getX(), p.getY()) < COLLISION_RADIUS;
+		System.out.println("Distance: " + this.collisionBox.getDistanceTo(p.getCenterX(), p.getCenterY()));
+		return this.collisionBox.getDistanceTo(p.getCenterX(), p.getCenterY()) < COLLISION_RADIUS;
 	}
 
 	@Override
