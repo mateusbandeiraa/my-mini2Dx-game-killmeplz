@@ -1,5 +1,7 @@
 package dev.mateusbandeira.killmeplz.entity;
 
+import org.mini2Dx.core.game.GameContainer;
+
 import com.badlogic.gdx.graphics.Texture;
 
 public class AmmoRefueler extends GameObject {
@@ -13,12 +15,11 @@ public class AmmoRefueler extends GameObject {
 	}
 
 	public boolean checkCollision(Player p) {
-		System.out.println("Distance: " + this.collisionBox.getDistanceTo(p.getCenterX(), p.getCenterY()));
 		return this.collisionBox.getDistanceTo(p.getCenterX(), p.getCenterY()) < COLLISION_RADIUS;
 	}
 
 	@Override
-	public void behave(float delta) {
+	public void behave(GameContainer gc, float delta) {
 		// TODO Auto-generated method stub
 
 	}

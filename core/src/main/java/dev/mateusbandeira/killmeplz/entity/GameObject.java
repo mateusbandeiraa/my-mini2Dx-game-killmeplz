@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Mateus Bandeira
  * 
  */
-public abstract class GameObject {
+public abstract class GameObject{
 	protected CollisionBox collisionBox;
 	protected Sprite sprite;
 
@@ -43,15 +43,15 @@ public abstract class GameObject {
 		sprite.setPosition(collisionBox.getX(), collisionBox.getY());
 	}
 
-	public final void update(float delta) {
+	public final void update(GameContainer gc, float delta) {
 		collisionBox.preUpdate();
-		this.behave(delta);
+		this.behave(gc, delta);
 	}
 
 	/**
 	 * Análogo ao update(), mas é rodado após o update da collisionBox.
 	 */
-	public abstract void behave(float delta);
+	public abstract void behave(GameContainer gc, float delta);
 
 	public void interpolate(GameContainer gc, float alpha) {
 		collisionBox.interpolate(gc, alpha);

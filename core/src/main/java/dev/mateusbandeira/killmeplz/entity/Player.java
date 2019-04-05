@@ -1,5 +1,6 @@
 package dev.mateusbandeira.killmeplz.entity;
 
+import org.mini2Dx.core.game.GameContainer;
 import org.mini2Dx.core.graphics.Graphics;
 
 import com.badlogic.gdx.Gdx;
@@ -15,7 +16,7 @@ public class Player extends GameObject{
 		super(32f, 8f, DIMENSIONS, DIMENSIONS, new Texture(INITIAL_COLOR.sprite));
 	}
 
-	public void behave(float delta) {
+	public void behave(GameContainer gc, float delta) {
 		if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
 			if (sprite.isFlipX())
 				sprite.flip(true, false);

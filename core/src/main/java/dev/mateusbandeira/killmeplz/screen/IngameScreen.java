@@ -34,8 +34,8 @@ public class IngameScreen extends BasicGameScreen {
 		if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
 			screenManager.enterGameScreen(2, new FadeOutTransition(), new FadeInTransition());
 		}
-		player.update(delta);
-		refueler1.update(delta);
+		player.update(gc, delta);
+		refueler1.update(gc, delta);
 
 	}
 
