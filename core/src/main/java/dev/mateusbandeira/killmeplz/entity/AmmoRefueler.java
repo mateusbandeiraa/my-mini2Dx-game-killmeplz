@@ -1,7 +1,6 @@
-package entity;
+package dev.mateusbandeira.killmeplz.entity;
 
 import org.mini2Dx.core.engine.geom.CollisionPoint;
-import org.mini2Dx.core.geom.Point;
 import org.mini2Dx.core.graphics.Graphics;
 import org.mini2Dx.core.graphics.Sprite;
 
@@ -21,9 +20,7 @@ public class AmmoRefueler {
 	}
 
 	public boolean checkCollision(Player p) {
-		Point playerCollisionPoint = p.getPoint();
-
-		return this.point.getDistanceTo(playerCollisionPoint) < COLLISION_RADIUS;
+		return this.point.getDistanceTo(p.getX(), p.getY()) < COLLISION_RADIUS;
 	}
 
 	public void update() {

@@ -11,8 +11,8 @@ import org.mini2Dx.core.screen.transition.FadeOutTransition;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 
-import entity.AmmoRefueler;
-import entity.Player;
+import dev.mateusbandeira.killmeplz.entity.AmmoRefueler;
+import dev.mateusbandeira.killmeplz.entity.Player;
 
 public class IngameScreen extends BasicGameScreen {
 	public static final int ID = 1;
@@ -34,14 +34,14 @@ public class IngameScreen extends BasicGameScreen {
 		if (Gdx.input.isKeyPressed(Input.Keys.TAB)) {
 			screenManager.enterGameScreen(2, new FadeOutTransition(), new FadeInTransition());
 		}
-		player.update();
+		player.update(delta);
 		refueler1.update();
 
 	}
 
 	@Override
 	public void interpolate(GameContainer gc, float alpha) {
-		player.interpolate(alpha);
+		player.interpolate(gc, alpha);
 		refueler1.interpolate(alpha);
 
 	}

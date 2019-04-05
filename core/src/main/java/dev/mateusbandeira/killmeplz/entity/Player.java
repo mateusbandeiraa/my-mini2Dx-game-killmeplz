@@ -1,4 +1,4 @@
-package entity;
+package dev.mateusbandeira.killmeplz.entity;
 
 import org.mini2Dx.core.graphics.Graphics;
 
