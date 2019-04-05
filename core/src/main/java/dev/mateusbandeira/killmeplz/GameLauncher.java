@@ -2,6 +2,9 @@ package dev.mateusbandeira.killmeplz;
 
 import org.mini2Dx.core.game.ScreenBasedGame;
 
+import dev.mateusbandeira.killmeplz.screen.IngameScreen;
+import dev.mateusbandeira.killmeplz.screen.MenuScreen;
+
 public class GameLauncher extends ScreenBasedGame {
 	public static final String GAME_IDENTIFIER = "dev.mateusbandeira.killmeplz";
 	

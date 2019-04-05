@@ -1,4 +1,4 @@
-package dev.mateusbandeira.killmeplz;
+package dev.mateusbandeira.killmeplz.screen;
 
 import org.mini2Dx.core.game.GameContainer;
 import org.mini2Dx.core.graphics.Graphics;
