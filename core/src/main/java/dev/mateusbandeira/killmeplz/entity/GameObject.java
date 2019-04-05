@@ -1,7 +1,10 @@
 package dev.mateusbandeira.killmeplz.entity;
 
+import org.mini2Dx.core.engine.PositionChangeListener;
+import org.mini2Dx.core.engine.Positionable;
 import org.mini2Dx.core.engine.geom.CollisionBox;
 import org.mini2Dx.core.game.GameContainer;
+import org.mini2Dx.core.geom.Point;
 import org.mini2Dx.core.graphics.Graphics;
 import org.mini2Dx.core.graphics.Sprite;
 
@@ -13,7 +16,7 @@ import com.badlogic.gdx.graphics.Texture;
  * @author Mateus Bandeira
  * 
  */
-public abstract class GameObject{
+public abstract class GameObject implements Positionable {
 	protected CollisionBox collisionBox;
 	protected Sprite sprite;
 
@@ -65,6 +68,11 @@ public abstract class GameObject{
 	};
 
 	// GETTERS E SETTERS ABAIXO!
+	
+	@Override
+	public int getId() {
+		return collisionBox.getId();
+	}
 
 	public Texture getTexture() {
 		return sprite.getTexture();
@@ -101,9 +109,14 @@ public abstract class GameObject{
 		collisionBox.set(x, y);
 		this.updateSpritePosition();
 	}
-	
+
 	public float getCenterX() {
 		return collisionBox.getCenterX();
+	}
+	
+	@Override
+	public int getRenderX() {
+		return collisionBox.getRenderX();
 	}
 
 	public float getX() {
@@ -119,6 +132,11 @@ public abstract class GameObject{
 		return collisionBox.getCenterY();
 	}
 	
+	@Override
+	public int getRenderY() {
+		return collisionBox.getRenderY();
+	}
+
 	public float getY() {
 		return collisionBox.getY();
 	}
@@ -126,6 +144,47 @@ public abstract class GameObject{
 	public void setY(float y) {
 		collisionBox.setY(y);
 		this.updateSpritePosition();
+	}
+	
+	
+	// Métodos de Positionable
+
+	@Override
+	public float getDistanceTo(Positionable positionable) {
+		return collisionBox.getDistanceTo(positionable);
+	}
+
+	@Override
+	public float getDistanceTo(Point point) {
+		return collisionBox.getDistanceTo(point);
+	}
+
+	@Override
+	public float getDistanceTo(float x, float y) {
+		return collisionBox.getDistanceTo(x, y);
+	}
+
+	@Override
+	public void moveTowards(float x, float y, float speed) {
+		collisionBox.moveTowards(x, y, speed);
+
+	}
+
+	@Override
+	public void moveTowards(Positionable positionable, float speed) {
+		collisionBox.moveTowards(positionable, speed);
+	}
+
+	@Override
+	public <T extends Positionable> void addPostionChangeListener(PositionChangeListener<T> listener) {
+		collisionBox.addPostionChangeListener(listener);
+
+	}
+
+	@Override
+	public <T extends Positionable> void removePositionChangeListener(PositionChangeListener<T> listener) {
+		collisionBox.removePositionChangeListener(listener);
+
 	}
 
 }
