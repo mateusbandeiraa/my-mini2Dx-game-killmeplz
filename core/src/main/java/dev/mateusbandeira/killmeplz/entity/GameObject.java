@@ -67,8 +67,48 @@ public abstract class GameObject implements Positionable {
 		g.drawSprite(sprite, collisionBox.getRenderX(), collisionBox.getRenderY());
 	};
 
+	// Métodos de Positionable
+
+	@Override
+	public float getDistanceTo(Positionable positionable) {
+		return collisionBox.getDistanceTo(positionable);
+	}
+
+	@Override
+	public float getDistanceTo(Point point) {
+		return collisionBox.getDistanceTo(point);
+	}
+
+	@Override
+	public float getDistanceTo(float x, float y) {
+		return collisionBox.getDistanceTo(x, y);
+	}
+
+	@Override
+	public void moveTowards(float x, float y, float speed) {
+		collisionBox.moveTowards(x, y, speed);
+
+	}
+
+	@Override
+	public void moveTowards(Positionable positionable, float speed) {
+		collisionBox.moveTowards(positionable, speed);
+	}
+
+	@Override
+	public <T extends Positionable> void addPostionChangeListener(PositionChangeListener<T> listener) {
+		collisionBox.addPostionChangeListener(listener);
+
+	}
+
+	@Override
+	public <T extends Positionable> void removePositionChangeListener(PositionChangeListener<T> listener) {
+		collisionBox.removePositionChangeListener(listener);
+
+	}
+
 	// GETTERS E SETTERS ABAIXO!
-	
+
 	@Override
 	public int getId() {
 		return collisionBox.getId();
@@ -113,7 +153,7 @@ public abstract class GameObject implements Positionable {
 	public float getCenterX() {
 		return collisionBox.getCenterX();
 	}
-	
+
 	@Override
 	public int getRenderX() {
 		return collisionBox.getRenderX();
@@ -131,7 +171,7 @@ public abstract class GameObject implements Positionable {
 	public float getCenterY() {
 		return collisionBox.getCenterY();
 	}
-	
+
 	@Override
 	public int getRenderY() {
 		return collisionBox.getRenderY();
@@ -144,47 +184,6 @@ public abstract class GameObject implements Positionable {
 	public void setY(float y) {
 		collisionBox.setY(y);
 		this.updateSpritePosition();
-	}
-	
-	
-	// Métodos de Positionable
-
-	@Override
-	public float getDistanceTo(Positionable positionable) {
-		return collisionBox.getDistanceTo(positionable);
-	}
-
-	@Override
-	public float getDistanceTo(Point point) {
-		return collisionBox.getDistanceTo(point);
-	}
-
-	@Override
-	public float getDistanceTo(float x, float y) {
-		return collisionBox.getDistanceTo(x, y);
-	}
-
-	@Override
-	public void moveTowards(float x, float y, float speed) {
-		collisionBox.moveTowards(x, y, speed);
-
-	}
-
-	@Override
-	public void moveTowards(Positionable positionable, float speed) {
-		collisionBox.moveTowards(positionable, speed);
-	}
-
-	@Override
-	public <T extends Positionable> void addPostionChangeListener(PositionChangeListener<T> listener) {
-		collisionBox.addPostionChangeListener(listener);
-
-	}
-
-	@Override
-	public <T extends Positionable> void removePositionChangeListener(PositionChangeListener<T> listener) {
-		collisionBox.removePositionChangeListener(listener);
-
 	}
 
 }
