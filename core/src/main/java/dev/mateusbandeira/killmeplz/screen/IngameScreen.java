@@ -48,8 +48,8 @@ public class IngameScreen extends BasicGameScreen {
 
 	@Override
 	public void render(GameContainer gc, Graphics g) {
-		refueler1.render(g);
-		player.render(g);
+		refueler1.render(gc, g);
+		player.render(gc, g);
 
 		// Verifica se existe colisão entre o jogador e o Refueler.
 		if (refueler1.checkCollision(player)) {

@@ -26,7 +26,7 @@ public class Health extends GameObject {
 	}
 
 	@Override
-	public void render(Graphics g) {
+	public void render(GameContainer gc, Graphics g) {
 		g.setColor(Color.WHITE);
 		g.drawRect(getX(), getY(), 32f, 5f);
 		g.setColor(getPercentage() > 0.4f ? Color.GREEN : Color.RED);

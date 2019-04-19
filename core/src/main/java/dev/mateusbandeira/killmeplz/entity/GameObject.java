@@ -60,7 +60,7 @@ public abstract class GameObject implements Positionable {
 		collisionBox.interpolate(gc, alpha);
 	}
 
-	public void render(Graphics g) {
+	public void render(GameContainer gc, Graphics g) {
 		if (sprite.getX() != collisionBox.getRenderX()) {
 			System.out.println("X: " + sprite.getX() + ", renderX: " + collisionBox.getRenderX());
 		}

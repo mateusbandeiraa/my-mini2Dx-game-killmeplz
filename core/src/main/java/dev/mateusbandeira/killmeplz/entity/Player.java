@@ -37,9 +37,9 @@ public class Player extends GameObject {
 		health.behave(gc, delta);
 	}
 
-	public void render(Graphics g) {
+	public void render(GameContainer gc, Graphics g) {
 		g.drawSprite(this.sprite);
-		health.render(g);
+		health.render(gc, g);
 	}
 
 	public void changeColor(TankColor color) {
